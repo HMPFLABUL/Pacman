@@ -1,0 +1,36 @@
+Initialize engine version: 5.3.4f1 (fdbb5133b820)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 10.1]
+    Renderer: Intel(R) HD Graphics Family (ID=0x126)
+    Vendor:   Intel
+    VRAM:     880 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.053 seconds
+Platform assembly: C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\mrj\Desktop\proj. GRY\PacmanGJ\PacManGJ_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.681873 ms
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.052317 ms
+Level 0 Loaded!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 2333.
+Total: 0.775061 ms (FindLiveObjects: 0.168723 ms CreateObjectMapping: 0.043104 ms MarkObjects: 0.550917 ms  DeleteObjects: 0.011084 ms)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 243c -> priority: 1 
