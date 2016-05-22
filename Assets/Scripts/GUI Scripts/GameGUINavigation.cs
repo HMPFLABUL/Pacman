@@ -23,9 +23,9 @@ public class GameGUINavigation : MonoBehaviour {
 	public Canvas ScoreCanvas;
     public Canvas ErrorCanvas;
     public Canvas GameOverCanvas;
-	
-	// buttons
-	public Button MenuButton;
+    GameObject[] pacdots;
+    // buttons
+    public Button MenuButton;
 
 	//------------------------------------------------------------------
 	// Function Definitions
@@ -33,7 +33,8 @@ public class GameGUINavigation : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		StartCoroutine("ShowReadyScreen", initialDelay);
+        pacdots = GameObject.FindGameObjectsWithTag("pacdot");
+        StartCoroutine("ShowReadyScreen", initialDelay);
 	}
 	
 	// Update is called once per frame
@@ -83,6 +84,7 @@ public class GameGUINavigation : MonoBehaviour {
         Debug.Log("Showing GAME OVER Screen");
         GameOverCanvas.enabled = true;
         yield return new WaitForSeconds(2);
+        PlayerPrefs.SetInt("HS", GameManager.score);
         Menu();
     }
 
@@ -215,7 +217,11 @@ public class GameGUINavigation : MonoBehaviour {
     public void LoadLevel()
     {
         GameManager.Level++;
-        Application.LoadLevel("game");
+        foreach(GameObject p in pacdots)
+        {
+            p.gameObject.SetActive(true);
+        }
+        //Application.LoadLevel("game");
     }
 
     public void ToggleErrorMsg(string errorMsg)

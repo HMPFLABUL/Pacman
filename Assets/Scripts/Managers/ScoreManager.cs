@@ -38,8 +38,8 @@ public class ScoreManager : MonoBehaviour {
         //StartCoroutine("ReadScoresFromDB");
 
         if (level == 2) StartCoroutine("UpdateGUIText");    // if scores is loaded
-        if (level == 1) _lowestHigh = _highscore = 99999;
-        //if (level == 1) StartCoroutine("GetHighestScore");  // if game is loaded
+       // if (level == 1) _lowestHigh = _highscore = 0;
+        if (level == 1) StartCoroutine("GetHighestScore");  // if game is loaded
     }
 
     IEnumerator GetHighestScore()
@@ -58,8 +58,15 @@ public class ScoreManager : MonoBehaviour {
                 break;
             }
         }
+        try
+        {
+            _highscore = PlayerPrefs.GetInt("HS");
+        }
+        catch
+        {
+            _highscore = 0;/// scoreList[0].score;
+        }
 
-        _highscore = scoreList[0].score;
         _lowestHigh = scoreList[scoreList.Count - 1].score;
     }
 

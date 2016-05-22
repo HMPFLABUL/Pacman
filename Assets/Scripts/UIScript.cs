@@ -6,7 +6,7 @@ public class UIScript : MonoBehaviour {
 
 	public int high, score;
 
-	public List<Image> lives = new List<Image>(3);
+	public List<Image> lives = new List<Image>(5);
 
 	Text txt_score, txt_high, txt_level;
 	
@@ -28,12 +28,12 @@ public class UIScript : MonoBehaviour {
 	void Update () 
 	{
 
-        high = GameObject.Find("Game Manager").GetComponent<ScoreManager>().High();
+        //high = GameObject.Find("Game Manager").GetComponent<ScoreManager>().High();
 
         // update score text
         score = GameManager.score;
 		txt_score.text = "Score\n" + score;
-		txt_high.text = "High Score\n" + high;
+		txt_high.text = "High Score\n" + PlayerPrefs.GetInt("HS");
 	    txt_level.text = "Level\n" + (GameManager.Level + 1);
 
 	}

@@ -5,10 +5,11 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 0.4f;
+    public float speed = 0.5f;
     Vector2 _dest = Vector2.zero;
     Vector2 _dir = Vector2.zero;
     Vector2 _nextDir = Vector2.zero;
+    
 
     [Serializable]
     public class PointSprites
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private GameGUINavigation GUINav;
     private GameManager GM;
     private ScoreManager SM;
+
+    
 
     private bool _deadPlaying = false;
 
@@ -59,16 +62,16 @@ public class PlayerController : MonoBehaviour
     {
         _deadPlaying = true;
         GetComponent<Animator>().SetBool("Die", true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         GetComponent<Animator>().SetBool("Die", false);
         _deadPlaying = false;
 
         if (GameManager.lives <= 0)
         {
-            Debug.Log("Treshold for High Score: " + SM.LowestHigh());
-            if (GameManager.score >= SM.LowestHigh())
-                GUINav.getScoresMenu();
-            else
+           // Debug.Log("Treshold for High Score: " + SM.LowestHigh());
+            //if (GameManager.score >= SM.LowestHigh())
+               // GUINav.getScoresMenu();
+           // else
                 GUINav.H_ShowGameOverScreen();
         }
 
@@ -90,7 +93,10 @@ public class PlayerController : MonoBehaviour
         Vector2 pos = transform.position;
         direction += new Vector2(direction.x * 0.45f, direction.y * 0.45f);
         RaycastHit2D hit = Physics2D.Linecast(pos + direction, pos);
-        return hit.collider.name == "pacdot" || (hit.collider == GetComponent<Collider2D>());
+        if (hit.transform.gameObject.tag == "ghost") 
+            return true;
+        else
+            return hit.collider.name == "pacdot" || (hit.collider == GetComponent<Collider2D>());
     }
 
     public void ResetDestination()
@@ -107,10 +113,20 @@ public class PlayerController : MonoBehaviour
         GetComponent<Rigidbody2D>().MovePosition(p);
 
         // get the next direction from keyboard
-        if (Input.GetAxis("Horizontal") > 0) _nextDir = Vector2.right;
-        if (Input.GetAxis("Horizontal") < 0) _nextDir = -Vector2.right;
-        if (Input.GetAxis("Vertical") > 0) _nextDir = Vector2.up;
-        if (Input.GetAxis("Vertical") < 0) _nextDir = -Vector2.up;
+        if (!ModeMenager.reverseMode)
+        {
+            if (Input.GetAxis("Horizontal") > 0) _nextDir = Vector2.right;
+            if (Input.GetAxis("Horizontal") < 0) _nextDir = -Vector2.right;
+            if (Input.GetAxis("Vertical") > 0) _nextDir = Vector2.up;
+            if (Input.GetAxis("Vertical") < 0) _nextDir = -Vector2.up;
+        }
+        else
+        {
+            if (Input.GetAxis("Horizontal") > 0) _nextDir = -Vector2.right;
+            if (Input.GetAxis("Horizontal") < 0) _nextDir = Vector2.right;
+            if (Input.GetAxis("Vertical") > 0) _nextDir = -Vector2.up;
+            if (Input.GetAxis("Vertical") < 0) _nextDir = Vector2.up;
+        }
 
         // if pacman is in the center of a tile
         if (Vector2.Distance(_dest, transform.position) < 0.00001f)
@@ -140,6 +156,7 @@ public class PlayerController : MonoBehaviour
         killstreak++;
 
         // limit killstreak at 4
+        GameManager.rekt.Play();
         if (killstreak > 4) killstreak = 4;
 
         Instantiate(points.pointSprites[killstreak - 1], transform.position, Quaternion.identity);

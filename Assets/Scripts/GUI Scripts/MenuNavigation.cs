@@ -24,10 +24,10 @@ public class MenuNavigation : MonoBehaviour {
 		
 	}
 
-    public void Credits()
-    {
-        Application.LoadLevel("credits");
-    }
+   // public void Credits()
+  //  {
+   //     Application.LoadLevel("credits");
+   // }
 
 	public void SourceCode()
 	{

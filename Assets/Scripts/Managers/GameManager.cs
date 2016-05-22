@@ -7,10 +7,17 @@ public class GameManager : MonoBehaviour {
     // Game variables
 
     public static int Level = 0;
-    public static int lives = 3;
+    public static int lives = 5;
 
+    [SerializeField]
+    public List<Sprite> dotsSpritesBuff = new List<Sprite>();
+    public static List<Sprite> dotsSprites = new List<Sprite>();
 	public enum GameState { Init, Game, Dead, Scores }
 	public static GameState gameState;
+
+    public AudioSource wakawaka;
+    public AudioSource awShit;
+    public static AudioSource rekt;
 
     private GameObject pacman;
     private GameObject blinky;
@@ -50,6 +57,7 @@ public class GameManager : MonoBehaviour {
 
     void Awake()
     {
+        dotsSprites = dotsSpritesBuff;
         if (_instance == null)
         {
             _instance = this;
@@ -66,12 +74,14 @@ public class GameManager : MonoBehaviour {
 
 	void Start () 
 	{
+        rekt = GetComponent<AudioSource>();
+        wakawaka.Play();
 		gameState = GameState.Init;
 	}
 
     void OnLevelWasLoaded()
     {
-        if (Level == 0) lives = 3;
+        if (Level == 0) lives = 5;
 
         Debug.Log("Level " + Level + " Loaded!");
         AssignGhosts();
@@ -79,11 +89,11 @@ public class GameManager : MonoBehaviour {
 
 
         // Adjust Ghost variables!
-        clyde.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
-        blinky.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
-        pinky.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
-        inky.GetComponent<GhostMove>().speed += Level * SpeedPerLevel;
-        pacman.GetComponent<PlayerController>().speed += Level*SpeedPerLevel/2;
+      //  clyde.GetComponent<GhostMove>().speed = Level * SpeedPerLevel;
+      //  blinky.GetComponent<GhostMove>().speed = Level * SpeedPerLevel;
+     //   pinky.GetComponent<GhostMove>().speed = Level * SpeedPerLevel;
+      //  inky.GetComponent<GhostMove>().speed = Level * SpeedPerLevel;
+       // pacman.GetComponent<PlayerController>().speed = Level*SpeedPerLevel/2;
     }
 
     private void ResetVariables()
@@ -104,8 +114,8 @@ public class GameManager : MonoBehaviour {
 	public void ResetScene()
 	{
         CalmGhosts();
-
-		pacman.transform.position = new Vector3(15f, 11f, 0f);
+        wakawaka.Play();
+        pacman.transform.position = new Vector3(15f, 11f, 0f);
 		blinky.transform.position = new Vector3(15f, 20f, 0f);
 		pinky.transform.position = new Vector3(14.5f, 17f, 0f);
 		inky.transform.position = new Vector3(16.5f, 17f, 0f);
@@ -119,6 +129,7 @@ public class GameManager : MonoBehaviour {
 
         gameState = GameState.Init;  
         gui.H_ShowReadyScreen();
+        ModeMenager.resetMachine = true;
 
 	}
 
@@ -172,7 +183,8 @@ public class GameManager : MonoBehaviour {
     {
         lives--;
         gameState = GameState.Dead;
-    
+        wakawaka.Stop();
+        awShit.Play();
         // update UI too
         UIScript ui = GameObject.FindObjectOfType<UIScript>();
         Destroy(ui.lives[ui.lives.Count - 1]);
@@ -184,7 +196,7 @@ public class GameManager : MonoBehaviour {
 
         score = 0;
         Level = 0;
-        lives = 3;
+        lives = 5;
         Destroy(GameObject.Find("Game Manager"));
     }
 }
