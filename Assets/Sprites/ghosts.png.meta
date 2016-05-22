@@ -41,7 +41,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 256
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -75,13 +75,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -2.5, y: 56}
-        - {x: -37.5, y: 41}
-        - {x: -57.5, y: 8}
+      - - {x: 14.5, y: 56}
+        - {x: -13.5, y: 51}
+        - {x: -57.5, y: 10}
         - {x: -57.5, y: -20}
-        - {x: -17.5, y: -56}
-        - {x: 46.5, y: -56}
-        - {x: 46.5, y: 56}
+        - {x: -3.5, y: -57}
+        - {x: 40.5, y: -57}
+        - {x: 46.5, y: -27}
+        - {x: 46.5, y: 36}
+        - {x: 37.5, y: 56}
     - name: ghosts_1
       rect:
         serializedVersion: 2
@@ -240,15 +242,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -60, y: -40.5}
-        - {x: -52, y: -52.5}
-        - {x: -21, y: -61.5}
-        - {x: 18, y: -61.5}
-        - {x: 64, y: -17.5}
-        - {x: 64, y: 46.5}
-        - {x: 37, y: 54.5}
-        - {x: -7, y: 54.5}
-        - {x: -60, y: 6.5}
+      - - {x: -9, y: 55.5}
+        - {x: -61, y: -2.5}
+        - {x: -61, y: -37.5}
+        - {x: -55, y: -51.5}
+        - {x: 3, y: -61.5}
+        - {x: 19, y: -61.5}
+        - {x: 65, y: -16.5}
+        - {x: 65, y: 51.5}
+        - {x: 16, y: 55.5}
     - name: ghosts_10
       rect:
         serializedVersion: 2
